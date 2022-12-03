@@ -1,0 +1,6 @@
+.ipynb_checkpoints/
+project_*.ipynb
+*.zip
+__pycache__
+.virtual_documents/
+matlab_*.png
