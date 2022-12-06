@@ -12,7 +12,7 @@ COULOMB_CONSTANT = 8.9875517923e9;
 MASS = 0.062;
 LENGTH = 0.80;
 MOMENT_OF_INERTIA = MASS * LENGTH^2;
-TIMESTEP = 1.79 / 25;
+TIMESTEP = 1.79 / 50;
 NSTEP = 75;
 
 % Initialize some variables
@@ -28,12 +28,12 @@ thetas(1) = theta;
 omegas(1) = omega;
 
 % Leapfrog integration
-ang_accel = force_y(theta) / MOMENT_OF_INERTIA;
+ang_accel = torque_theta(theta) / MOMENT_OF_INERTIA;
 for istep = 1: NSTEP
     % Leapfrog algorithm for a single step.
     omega_half = omega + TIMESTEP * ang_accel / 2;
     theta_next = theta + TIMESTEP * omega_half;
-    ang_accel_next = force_y(theta_next) / MASS;
+    ang_accel_next = torque_theta(theta_next) / MOMENT_OF_INERTIA;
     omega_next = omega_half + TIMESTEP * ang_accel_next / 2;
 
     % Store results.
@@ -52,7 +52,7 @@ ts = (1 : NSTEP + 1) * TIMESTEP;
 
 hold on;
 subplot(1, 3, 1)
-plot(ts, theta)
+plot(ts, thetas)
 xlabel("time t [s]")
 ylabel("angle theta [rad]")
 
@@ -65,8 +65,8 @@ subplot(1, 3, 3)
 eks = kinetic_energy(omegas);
 eps = potential_energy(thetas);
 plot(ts, eks, "b", ts, eps, "r", ts, eks + eps, "k")
-plot(ts, eps)
-plot(ts, eks + eps, 'color', "k")
+% plot(ts, eps)
+% plot(ts, eks + eps, 'color', "k")
 legend("kin. E", "pot. E", "total E")
 xlabel("time t [s]")
 ylabel("energy [J]")
@@ -111,7 +111,7 @@ hold off;
 % Functions must be defined in the end, in Matlab,
 % unlike in any other programming language...
 
-function [out] = force_y(theta)
+function [out] = torque_theta(theta)
     global MASS
     global STD_GRAVITY
     global LENGTH
