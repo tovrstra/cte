@@ -80,13 +80,13 @@ hold off;
 
 % Plot contour lines for the total energy
 
-x_low = min(thetas);
-x_high = max(thetas);
+x_low = min(xs);
+x_high = max(xs);
 x_margin = (x_high - x_low) * 0.15;
 x_low = x_low - x_margin;
 x_high = x_high + x_margin;
-v_low = min(omegas);
-v_high = max(omegas);
+v_low = min(vs);
+v_high = max(vs);
 v_margin = (v_high - v_low) * 0.15;
 v_low = v_low - v_margin;
 v_high = v_high + v_margin;
