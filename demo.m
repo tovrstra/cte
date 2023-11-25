@@ -44,7 +44,7 @@ end
 
 ts = (1 : NSTEP + 1) * TIMESTEP;
 
-hold on;
+fig = clf();
 subplot(1, 3, 1)
 plot(ts, xs)
 xlabel("t [s]")
@@ -63,23 +63,20 @@ legend("kin. E", "pot. E", "total E")
 xlabel("t [s]")
 ylabel("Energy [J]")
 saveas(gca(), "matlab_trajectory.png", "png")
-clf()
-hold off;
-
+waitfor(fig)
 
 % Plot velocity versus position
 
-hold on;
+fig = clf();
 plot(xs, vs)
 xlabel("x [m]")
 ylabel("v [m/s]")
 saveas(gca(), "matlab_v_x.png", "png")
-clf()
-hold off;
-
+waitfor(fig)
 
 % Plot contour lines for the total energy
 
+fig = clf();
 x_low = min(xs);
 x_high = max(xs);
 x_margin = (x_high - x_low) * 0.15;
@@ -97,8 +94,7 @@ contour(x_grid, v_grid, energy_grid, 40)
 xlabel("x [m]")
 ylabel("v [m/s]")
 saveas(gca(), "matlab_ener_contour.png", "png")
-clf()
-hold off;
+waitfor(fig)
 
 % Functions must be defined in the end, in Matlab,
 % unlike in any other programming language...
