@@ -19,7 +19,7 @@ repos:
     - id: mixed-line-ending
     - id: trailing-whitespace
 - repo: https://github.com/psf/black
-  rev: 23.11.0
+  rev: 23.12.1
   hooks:
     - id: black
       args: ["--line-length", "100"]
@@ -29,7 +29,7 @@ repos:
   - id: pyupgrade
     args: [--py310-plus]
 - repo: https://github.com/pycqa/isort
-  rev: 5.12.0
+  rev: 5.13.2
   hooks:
   - id: isort
     args: ["--line-length", "120", "--profile", "black", "--filter-files"]
@@ -40,7 +40,7 @@ repos:
     - id: forbid-crlf
     - id: remove-crlf
 - repo: https://github.com/nbQA-dev/nbQA
-  rev: "1.7.0"
+  rev: "1.7.1"
   hooks:
     - id: nbqa-black
       args: [--nbqa-skip-celltags=before-import]
@@ -55,7 +55,7 @@ repos:
       alias: nbqa-docformatter
       additional_dependencies: [docformatter==1.5.0]
 - repo: https://github.com/srstevenson/nb-clean
-  rev: "3.1.0"
+  rev: "3.2.0"
   hooks:
     - id: nb-clean
       args: ["--remove-empty-cells", "--preserve-cell-metadata", "tags", "slideshow", "--"]
